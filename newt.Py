@@ -5,10 +5,8 @@ import subprocess
 import sys
 
 def git_operations():
-    # Print header
-    print("Add, Commit, Push\n")
+    print("Staus, Add, Commit, Push commands\n")
     
-    # 1. Execute and print git status
     print("git status:")
     resultGitStatus = subprocess.run(["git", "status"], capture_output=True, text=True)
     print(resultGitStatus.stdout)
@@ -16,7 +14,6 @@ def git_operations():
         print("STDERR:")
         print(resultGitStatus.stderr)
     
-    # 2. Show planned commands and get confirmation
     commands = [
         ["git", "add", "--all"],
         ["git", "commit", "-m", "update files"],
@@ -27,9 +24,9 @@ def git_operations():
     for cmd in commands:
         print(" ".join(cmd))
     
-    confirmation = input("\nProceed with these commands? (y/n): ").strip().lower()
+    confirmation = input("\nAre you sure y/n: ").strip().lower()
     if confirmation != 'y':
-        print("Operation cancelled.")
+        print("Operation Redacted.")
         return
     
     # 3. Execute each command and show results
