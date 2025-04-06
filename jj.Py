@@ -48,3 +48,22 @@ resultGitPush = subprocess.run(["git", "push"], capture_output=True, text=True)
 print(resultGitPush.stdout)
 print("STDERR:")
 print(resultGitPush.stderr)
+
+confirmation = input("\nAre you sure?: ").strip().lower()
+    if confirmation != 'y' != 'yes':
+        print("Redacted")
+        return
+
+    for cmd in commands:
+        print(f"\nExecuting: {' '.join(cmd)}")
+        result = subprocess.run(cmd, capture_output=True, text=True)
+        
+        if result.stdout:
+            print(result.stdout)
+        if result.stderr:
+            print("STDERR:")
+            print(result.stderr)
+        
+        if result.returncode != 0:
+            print(f"Command failed with exit code {result.returncode}")
+            break

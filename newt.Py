@@ -1,11 +1,14 @@
+#Used Deepseek AI for assistance in simplfiying and fixing errors in code
+
 import subprocess
+
 import sys
 
-def git_operations():
-    # Print header
+def operat():
+    
     print("Add, Commit, Push\n")
     
-    # 1. Execute and print git status
+
     print("git status:")
     resultGitStatus = subprocess.run(["git", "status"], capture_output=True, text=True)
     print(resultGitStatus.stdout)
@@ -13,7 +16,6 @@ def git_operations():
         print("STDERR:")
         print(resultGitStatus.stderr)
     
-    # 2. Show planned commands and get confirmation
     commands = [
         ["git", "add", "--all"],
         ["git", "commit", "-m", "update files"],
@@ -24,12 +26,11 @@ def git_operations():
     for cmd in commands:
         print(" ".join(cmd))
     
-    confirmation = input("\nProceed with these commands? (y/n): ").strip().lower()
-    if confirmation != 'y':
-        print("Operation cancelled.")
+    confirmation = input("\nAre you sure?: ").strip().lower()
+    if confirmation != 'y' != 'yes':
+        print("Redacted")
         return
-    
-    # 3. Execute each command and show results
+
     for cmd in commands:
         print(f"\nExecuting: {' '.join(cmd)}")
         result = subprocess.run(cmd, capture_output=True, text=True)
@@ -43,6 +44,3 @@ def git_operations():
         if result.returncode != 0:
             print(f"Command failed with exit code {result.returncode}")
             break
-
-# Run the function
-git_operations()
